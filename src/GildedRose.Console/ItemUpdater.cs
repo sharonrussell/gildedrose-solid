@@ -1,54 +1,36 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace GildedRose.Console
 {
     public class ItemUpdater
     {
-        public void UpdateItems(List<Item> items)
+        public IList<Item> Items { get; }
+
+        public ItemUpdater()
         {
-            foreach (var item in items.Where(item => !ItemChecker.IsLegendary(item.Name)))
+            Items = new List<Item>
             {
-                UpdateQuality(item);
-                UpdateSellIn(item);
+                new Item {Name = "+5 Dexterity Vest", SellIn = 10, Quality = 20},
+                new AgedBrie {Name = "Aged Brie", SellIn = 2, Quality = 0},
+                new Item {Name = "Elixir of the Mongoose", SellIn = 5, Quality = 7},
+                new Item {Name = "Sulfuras, Hand of Ragnaros", SellIn = 0, Quality = 80},
+                new Item
+                {
+                    Name = "Backstage passes to a TAFKAL80ETC concert",
+                    SellIn = 15,
+                    Quality = 20
+                },
+                new Item {Name = "Conjured Mana Cake", SellIn = 3, Quality = 6}
+            };
+        }
+
+        public void UpdateItems()
+        {
+            foreach (var item in Items)
+            {
+                item.UpdateQuality();
+                item.UpdateSellIn();
             }
-        }
-
-        private void UpdateQuality(Item item)
-        {
-            if (ItemChecker.IncreasesOverTime(item.Name))
-                IncreaseQuality(item);
-            else
-                DecreaseQuality(item);
-        }
-
-        private void UpdateSellIn(Item item)
-        {
-            item.SellIn -= 1;
-        }
-
-        private void DecreaseQuality(Item item)
-        {
-            var decrease = UpdateCalculator.Decrease(item, ItemChecker.IsConjured(item.Name));
-
-            if (item.Quality - decrease >= 0)
-                item.Quality -= decrease;
-        }
-
-        private void IncreaseQuality(Item item)
-        {
-            if (ItemChecker.IsBackStagePass(item.Name))
-                UpdateBackStagePass(item);
-            else
-                item.Quality += UpdateCalculator.Increase(item);
-        }
-
-        private void UpdateBackStagePass(Item item)
-        {
-            if (ItemChecker.IsExpired(item))
-                item.Quality = 0;
-            else
-                item.Quality += UpdateCalculator.BackStagePassIncrease(item);
         }
     }
 }

@@ -9,113 +9,99 @@ namespace GildedRose.Tests
     [TestFixture]
     public class ItemUpdaterTests
     {
-        private List<Item> Items { get; set; }
         private ItemUpdater _itemUpdater;
+        private IList<Item> _items;
 
         [SetUp]
         public void SetUp()
         {
-            Items = new List<Item>
-            {
-                new Item {Name = "+5 Dexterity Vest", SellIn = 10, Quality = 20},
-                new Item {Name = "Aged Brie", SellIn = 2, Quality = 0},
-                new Item {Name = "Elixir of the Mongoose", SellIn = 5, Quality = 7},
-                new Item {Name = "Sulfuras, Hand of Ragnaros", SellIn = 0, Quality = 80},
-                new Item
-                {
-                    Name = "Backstage passes to a TAFKAL80ETC concert",
-                    SellIn = 15,
-                    Quality = 20
-                },
-                new Item {Name = "Conjured Mana Cake", SellIn = 3, Quality = 6}
-            };
-
             _itemUpdater = new ItemUpdater();
+            _items = _itemUpdater.Items;
         }
 
         [Test]
         public void WhenADayPasses_QualityDecreases()
         {
-            var vest = Items.Single(x => x.Name.Equals("+5 Dexterity Vest"));
+            var vest = _items.Single(x => x.Name.Equals("+5 Dexterity Vest"));
             var initialVestQuality = vest.Quality;
 
-            _itemUpdater.UpdateItems(Items);
+            _itemUpdater.UpdateItems();
 
-            Assert.That(initialVestQuality > vest.Quality);
+            Assert.That(initialVestQuality, Is.GreaterThan(vest.Quality));
         }
 
         [Test]
         public void WhenADayPasses_SellInDecreases()
         {
-            var vest = Items.Single(x => x.Name.Equals("+5 Dexterity Vest"));
+            var vest = _items.Single(x => x.Name.Equals("+5 Dexterity Vest"));
             var initialVestSellIn = vest.SellIn;
 
-            _itemUpdater.UpdateItems(Items);
+            _itemUpdater.UpdateItems();
 
-            Assert.That(initialVestSellIn > vest.SellIn);
+            Assert.That(initialVestSellIn, Is.GreaterThan(vest.SellIn));
         }
 
         [Test]
         public void OnceTheSellByDateHasPassedQualityDegradesTwiceAsFast()
         {
-            var vest = Items.Single(x => x.Name.Equals("+5 Dexterity Vest"));
+            var vest = _items.Single(x => x.Name.Equals("+5 Dexterity Vest"));
             var initialVestQuality = vest.Quality;
             vest.SellIn = 1;
 
-            _itemUpdater.UpdateItems(Items);
+            _itemUpdater.UpdateItems();
 
             var intermediaryVestQuality = vest.Quality;
 
-            _itemUpdater.UpdateItems(Items);
+            _itemUpdater.UpdateItems();
 
             var initialDifference = initialVestQuality - intermediaryVestQuality;
             var newDifference = intermediaryVestQuality - vest.Quality;
 
-            Assert.That(newDifference == initialDifference * 2);
+            Assert.That(newDifference, Is.EqualTo(initialDifference * 2));
         }
 
         [Test]
         public void TheQualityOfAnItemCannotBeNegative()
         {
-            var manaCake = Items.Single(x => x.Name.Equals("Conjured Mana Cake"));
+            var manaCake = _items.Single(x => x.Name.Equals("Conjured Mana Cake"));
             manaCake.Quality = 0;
            
-            _itemUpdater.UpdateItems(Items);
+            _itemUpdater.UpdateItems();
 
-            Assert.That(manaCake.Quality == 0);
+            Assert.That(manaCake.Quality, Is.EqualTo(0));
         }
 
         [Test]
         public void AgedBrieShouldIncreaseInQualityAsItAges()
         {
-            var agedBrie = Items.Single(x => x.Name.Equals("Aged Brie"));
+            var agedBrie = _items.Single(x => x.Name.Equals("Aged Brie"));
             var initialQuality = agedBrie.Quality;
 
-            _itemUpdater.UpdateItems(Items);
+            _itemUpdater.UpdateItems();
             var newQuality = agedBrie.Quality;
 
-            Assert.That(initialQuality < newQuality);
+            Assert.That(initialQuality, Is.LessThan(newQuality));
         }
 
         [Test]
         public void TheQualityOfAnItemCannotBeGreaterThan50()
         {
-            var agedBrie = Items.Single(x => x.Name.Equals("Aged Brie"));
+            var agedBrie = _items.Single(x => x.Name.Equals("Aged Brie"));
             agedBrie.Quality = 50;
 
-            _itemUpdater.UpdateItems(Items);
+            _itemUpdater.UpdateItems();
 
-            Assert.That(agedBrie.Quality == 50);
+            Assert.That(agedBrie.Quality, Is.EqualTo(50));
         }
 
         [Test]
         public void SulfurasShouldNotBeSoldOrDecreaseInQuality()
         {
-            var sulfuras = Items.Single(x => x.Name.Equals("Sulfuras, Hand of Ragnaros"));
+            var sulfuras = _items.Single(x => x.Name.Equals("Sulfuras, Hand of Ragnaros"));
             var initialQuality = sulfuras.Quality;
             var initialSellin = sulfuras.SellIn;
 
-            _itemUpdater.UpdateItems(Items);
+            _itemUpdater.UpdateItems();
 
             Assert.That(initialQuality, Is.EqualTo(sulfuras.Quality));
             Assert.That(initialSellin, Is.EqualTo(sulfuras.SellIn));
@@ -124,11 +110,11 @@ namespace GildedRose.Tests
         [Test]
         public void BackStagePassQualityIncreasesBy2WhenSellInIs10()
         {
-            var backStagePass = Items.Single(x => x.Name.Equals("Backstage passes to a TAFKAL80ETC concert"));
+            var backStagePass = _items.Single(x => x.Name.Equals("Backstage passes to a TAFKAL80ETC concert"));
             var initialQuality = backStagePass.Quality;
             backStagePass.SellIn = 9;
 
-            _itemUpdater.UpdateItems(Items);
+            _itemUpdater.UpdateItems();
 
             Assert.That(initialQuality, Is.EqualTo(backStagePass.Quality - 2));
         }
@@ -136,11 +122,11 @@ namespace GildedRose.Tests
         [Test]
         public void BackStagePassQualityIncreasesBy3WhenSellInIs5()
         {
-            var backStagePass = Items.Single(x => x.Name.Equals("Backstage passes to a TAFKAL80ETC concert"));
+            var backStagePass = _items.Single(x => x.Name.Equals("Backstage passes to a TAFKAL80ETC concert"));
             var initialQuality = backStagePass.Quality;
             backStagePass.SellIn = 4;
 
-            _itemUpdater.UpdateItems(Items);
+            _itemUpdater.UpdateItems();
 
             Assert.That(initialQuality, Is.EqualTo(backStagePass.Quality - 3));
         }
@@ -148,9 +134,9 @@ namespace GildedRose.Tests
         [Test]
         public void BackStagePassQualityDropsTo0WhenSellInIs0()
         {
-            var backStagePass = Items.Single(x => x.Name.Equals("Backstage passes to a TAFKAL80ETC concert"));
+            var backStagePass = _items.Single(x => x.Name.Equals("Backstage passes to a TAFKAL80ETC concert"));
             backStagePass.SellIn = 0;
-            _itemUpdater.UpdateItems(Items);
+            _itemUpdater.UpdateItems();
 
             Assert.That(backStagePass.Quality, Is.EqualTo(0));
         }
@@ -158,10 +144,10 @@ namespace GildedRose.Tests
         [Test]
         public void ConjuredItemsDegradeTwiceAsFast()
         {
-            var conjuredItem = Items.Single(x => x.Name.Equals("Conjured Mana Cake"));
+            var conjuredItem = _items.Single(x => x.Name.Equals("Conjured Mana Cake"));
             var initialQuality = conjuredItem.Quality;
 
-            _itemUpdater.UpdateItems(Items);
+            _itemUpdater.UpdateItems();
             var newQuality = conjuredItem.Quality;
 
             Assert.That(initialQuality, Is.EqualTo(newQuality + 2));
