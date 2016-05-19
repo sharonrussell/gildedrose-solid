@@ -13,7 +13,7 @@ using System.Reflection;
 
 [assembly: AssemblyVersion("0.1.0.0")]
 [assembly: AssemblyFileVersion("0.1.0.0")]
-[assembly: AssemblyInformationalVersion("0.1.0+24.Branch.master.Sha.89eb582932418012f1f0c0f8a1cb4847d8a10f87")]
+[assembly: AssemblyInformationalVersion("0.1.0+3.Branch.master.Sha.056e18a8cc1cbe85fb55354c9be326e2f27dc9e4")]
 
 namespace GildedRose.Tests
 {
@@ -26,18 +26,18 @@ namespace GildedRose.Tests
         public static string Patch = "0";
         public static string PreReleaseTag = "";
         public static string PreReleaseTagWithDash = "";
-        public static string BuildMetaData = "24";
-        public static string BuildMetaDataPadded = "0024";
-        public static string FullBuildMetaData = "24.Branch.master.Sha.89eb582932418012f1f0c0f8a1cb4847d8a10f87";
+        public static string BuildMetaData = "3";
+        public static string BuildMetaDataPadded = "0003";
+        public static string FullBuildMetaData = "3.Branch.master.Sha.056e18a8cc1cbe85fb55354c9be326e2f27dc9e4";
         public static string MajorMinorPatch = "0.1.0";
         public static string SemVer = "0.1.0";
         public static string LegacySemVer = "0.1.0";
         public static string LegacySemVerPadded = "0.1.0";
         public static string AssemblySemVer = "0.1.0.0";
-        public static string FullSemVer = "0.1.0+24";
-        public static string InformationalVersion = "0.1.0+24.Branch.master.Sha.89eb582932418012f1f0c0f8a1cb4847d8a10f87";
+        public static string FullSemVer = "0.1.0+3";
+        public static string InformationalVersion = "0.1.0+3.Branch.master.Sha.056e18a8cc1cbe85fb55354c9be326e2f27dc9e4";
         public static string BranchName = "master";
-        public static string Sha = "89eb582932418012f1f0c0f8a1cb4847d8a10f87";
+        public static string Sha = "056e18a8cc1cbe85fb55354c9be326e2f27dc9e4";
         public static string NuGetVersionV2 = "0.1.0";
         public static string NuGetVersion = "0.1.0";
         public static string CommitDate = "2016-05-19";

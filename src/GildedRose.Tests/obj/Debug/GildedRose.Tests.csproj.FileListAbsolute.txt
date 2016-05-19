@@ -25,3 +25,12 @@ C:\Git\personal\GildedRose\src\GildedRose.Tests\bin\Debug\nunit.framework.xml
 C:\Git\personal\GildedRose\src\GildedRose.Tests\obj\Debug\GildedRose.Tests.csprojResolveAssemblyReference.cache
 C:\Git\personal\GildedRose\src\GildedRose.Tests\obj\Debug\GildedRose.Tests.dll
 C:\Git\personal\GildedRose\src\GildedRose.Tests\obj\Debug\GildedRose.Tests.pdb
+C:\Git\personal\GildedRose-SOLID\src\GildedRose.Tests\bin\Debug\GildedRose.Tests.dll
+C:\Git\personal\GildedRose-SOLID\src\GildedRose.Tests\bin\Debug\GildedRose.Tests.pdb
+C:\Git\personal\GildedRose-SOLID\src\GildedRose.Tests\bin\Debug\GildedRose.Console.exe
+C:\Git\personal\GildedRose-SOLID\src\GildedRose.Tests\bin\Debug\nunit.framework.dll
+C:\Git\personal\GildedRose-SOLID\src\GildedRose.Tests\bin\Debug\GildedRose.Console.pdb
+C:\Git\personal\GildedRose-SOLID\src\GildedRose.Tests\bin\Debug\nunit.framework.xml
+C:\Git\personal\GildedRose-SOLID\src\GildedRose.Tests\obj\Debug\GildedRose.Tests.csprojResolveAssemblyReference.cache
+C:\Git\personal\GildedRose-SOLID\src\GildedRose.Tests\obj\Debug\GildedRose.Tests.dll
+C:\Git\personal\GildedRose-SOLID\src\GildedRose.Tests\obj\Debug\GildedRose.Tests.pdb

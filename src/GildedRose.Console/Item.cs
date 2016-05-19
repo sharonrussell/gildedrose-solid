@@ -8,23 +8,29 @@
 
         public int Quality { get; set; }
 
+        public bool Expired => SellIn == 0;
+        protected virtual bool CanUpdateQuality => Quality > 0;
+        protected virtual bool CanUpdateSellin => true;
+
         public virtual void UpdateQuality()
         {
-            if (Expired())
-                Quality -= 2;
+            if (!CanUpdateQuality) return;
 
-            else if (Quality > 0)
-                Quality--;
+            DecreaseQuality();
         }
 
-        private bool Expired()
+        private void DecreaseQuality()
         {
-            return SellIn == 0;
+            if (Expired)
+                Quality -= 2;
+            else
+                Quality--;
         }
 
         public void UpdateSellIn()
         {
-            SellIn--;
+            if (CanUpdateSellin)
+                SellIn--;
         }
     }
 }

@@ -16,3 +16,9 @@ C:\Git\personal\GildedRose\src\GildedRose.Console\bin\Debug\GildedRose.Console.p
 C:\Git\personal\GildedRose\src\GildedRose.Console\obj\Debug\GildedRose.Console.csprojResolveAssemblyReference.cache
 C:\Git\personal\GildedRose\src\GildedRose.Console\obj\Debug\GildedRose.Console.exe
 C:\Git\personal\GildedRose\src\GildedRose.Console\obj\Debug\GildedRose.Console.pdb
+C:\Git\personal\GildedRose-SOLID\src\GildedRose.Console\bin\Debug\GildedRose.Console.exe.config
+C:\Git\personal\GildedRose-SOLID\src\GildedRose.Console\obj\Debug\GildedRose.Console.exe
+C:\Git\personal\GildedRose-SOLID\src\GildedRose.Console\obj\Debug\GildedRose.Console.pdb
+C:\Git\personal\GildedRose-SOLID\src\GildedRose.Console\bin\Debug\GildedRose.Console.exe
+C:\Git\personal\GildedRose-SOLID\src\GildedRose.Console\bin\Debug\GildedRose.Console.pdb
+C:\Git\personal\GildedRose-SOLID\src\GildedRose.Console\obj\Debug\GildedRose.Console.csprojResolveAssemblyReference.cache
